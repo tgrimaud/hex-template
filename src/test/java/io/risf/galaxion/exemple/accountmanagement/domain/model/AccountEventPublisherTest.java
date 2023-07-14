@@ -28,7 +28,7 @@ public class AccountEventPublisherTest {
     void testAccountPublisherWithoutHandler() {
         final AccountCreated[] receivedAccountCreated = new AccountCreated[1];
         AccountEventPublisher accountEventPublisher = new AccountEventPublisher();
-        
+
         Account account = new AccountMother()
                 .randomAccount()
                 .build();

@@ -11,7 +11,7 @@ import java.util.List;
 @Component
 public class AccountEventPublisher {
 
-    @Autowired
+    @Autowired(required = false)
     private List<AccountCreatedHandler> accountCreatedHandlers = new ArrayList<>();
 
     public AccountEventPublisher(){}
