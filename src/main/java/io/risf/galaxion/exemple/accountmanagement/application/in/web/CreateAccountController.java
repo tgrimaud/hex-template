@@ -1,4 +1,4 @@
-package io.risf.galaxion.exemple.accountmanagement.adapter.in.web;
+package io.risf.galaxion.exemple.accountmanagement.application.in.web;
 
 import io.risf.galaxion.exemple.accountmanagement.application.port.in.CreateAccountCommand;
 import io.risf.galaxion.exemple.accountmanagement.application.port.in.CreateAccountUseCase;

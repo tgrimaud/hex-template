@@ -1,11 +1,8 @@
 package io.risf.galaxion.exemple.subscriptionmanagement.application.service;
 
-import io.risf.galaxion.exemple.accountmanagement.adapter.out.queue.AccountQueueEventAdapter;
 import io.risf.galaxion.exemple.subscriptionmanagement.application.port.in.CreateSubscriptionCommand;
 import io.risf.galaxion.exemple.subscriptionmanagement.application.port.in.CreateSubscriptionUseCase;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.ILoggerFactory;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 

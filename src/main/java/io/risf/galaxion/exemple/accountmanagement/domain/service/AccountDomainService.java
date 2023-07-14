@@ -5,23 +5,17 @@ import io.risf.galaxion.exemple.accountmanagement.domain.model.AccountEligibilit
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+@Component
 public class AccountDomainService {
-    private static AccountDomainService instance;
     private AccountEligibilityPolicy accountEligibilityPolicy;
 
-    private AccountDomainService(){
+    public AccountDomainService(){
 
     }
-    
+
+    @Autowired(required = false)
     public void accountEligibilityPolicy(AccountEligibilityPolicy accountEligibilityPolicy) {
         this.accountEligibilityPolicy = accountEligibilityPolicy;
-    }
-
-    public static AccountDomainService getInstance() {
-        if (instance == null){
-            instance = new AccountDomainService();
-        }
-        return instance;
     }
 
 

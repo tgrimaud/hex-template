@@ -1,20 +1,13 @@
-package io.risf.galaxion.exemple.accountmanagement.adapter.out.persistence;
+package io.risf.galaxion.exemple.accountmanagement.application.port.out.out.persistence;
+
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class InMemoryAccountRepository implements AccountRepository {
     List<AccountEntity> accounts = new ArrayList<>();
-    private static AccountRepository instance;
-
-    private InMemoryAccountRepository(){}
-
-    public static AccountRepository getInstance() {
-        if (instance == null) {
-            instance = new InMemoryAccountRepository();
-        }
-        return instance;
-    }
 
 
     @Override

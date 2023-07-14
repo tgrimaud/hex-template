@@ -1,21 +1,24 @@
 package io.risf.galaxion.exemple.accountmanagement.domain.model;
 
 import io.risf.galaxion.exemple.accountmanagement.application.port.event.AccountCreatedHandler;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-//@Component
+@Component
 public class AccountEventPublisher {
     //In case we want to use the ApplicationEventPublisher of SpringBoot
     // private ApplicationEventPublisher publisher;
 
     private static AccountEventPublisher instance;
 
+    @Autowired
     private List<AccountCreatedHandler> accountCreatedHandlers = new ArrayList<>();
 
-    private AccountEventPublisher(){}
+    public AccountEventPublisher(){}
 
     public static AccountEventPublisher getInstance(){
         if (instance == null){
@@ -30,7 +33,6 @@ public class AccountEventPublisher {
         }
         //publisher.publishEvent(event);
     }
-
 
     public void addAccountCreatedHandler(AccountCreatedHandler handler) {
         accountCreatedHandlers.add(handler);

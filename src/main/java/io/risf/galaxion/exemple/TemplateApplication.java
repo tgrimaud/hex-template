@@ -1,11 +1,5 @@
 package io.risf.galaxion.exemple;
 
-import io.risf.galaxion.exemple.accountmanagement.adapter.out.persistence.AccountPersistenceAdapter;
-import io.risf.galaxion.exemple.accountmanagement.adapter.out.persistence.InMemoryAccountRepository;
-import io.risf.galaxion.exemple.accountmanagement.adapter.out.queue.AccountQueueEventAdapter;
-import io.risf.galaxion.exemple.accountmanagement.domain.DomainRegistry;
-import io.risf.galaxion.exemple.accountmanagement.domain.model.MajorAccountEligibilibittyPolicy;
-import io.risf.galaxion.exemple.subscriptionmanagement.adapter.in.event.SubscriptionAccountEventAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -28,11 +22,9 @@ public class TemplateApplication {
         LOG.info("Init Application");
 
         //Manual Injection
-        DomainRegistry.accountEventPublisher().addAccountCreatedHandler(new AccountQueueEventAdapter());
-        DomainRegistry.accountEventPublisher().addAccountCreatedHandler(context.getBean(SubscriptionAccountEventAdapter.class));
-        DomainRegistry.accountDomainService().accountEligibilityPolicy(new MajorAccountEligibilibittyPolicy());
+       // DomainRegistry.accountDomainService().accountEligibilityPolicy(new MajorAccountEligibilibittyPolicy());
         //Using a mix of SpringBoot injection and Manual
-        context.getBean(AccountPersistenceAdapter.class).accountRepository(InMemoryAccountRepository.getInstance());
+        //context.getBean(AccountPersistenceAdapter.class).accountRepository(InMemoryAccountRepository.getInstance());
 
         //You can set here all your implementation without using Spring Injection
         //So it could be more dynamic

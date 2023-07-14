@@ -1,24 +1,31 @@
 package io.risf.galaxion.exemple.accountmanagement.application;
 
+import io.risf.galaxion.exemple.accountmanagement.application.port.out.out.queue.AccountQueueEventAdapter;
 import io.risf.galaxion.exemple.accountmanagement.application.port.in.CreateAccountCommand;
 import io.risf.galaxion.exemple.accountmanagement.application.port.in.CreateAccountCommandMother;
 import io.risf.galaxion.exemple.accountmanagement.application.port.out.SaveAccountPort;
 import io.risf.galaxion.exemple.accountmanagement.application.service.CreateAccountApplicationService;
-import io.risf.galaxion.exemple.accountmanagement.domain.model.AccountNonEligibleException;
-import io.risf.galaxion.exemple.accountmanagement.domain.model.Account;
-import io.risf.galaxion.exemple.accountmanagement.domain.model.MajorAccountEligibilibittyPolicy;
+import io.risf.galaxion.exemple.accountmanagement.domain.model.*;
 import io.risf.galaxion.exemple.accountmanagement.domain.service.AccountDomainService;
-import io.risf.galaxion.exemple.accountmanagement.domain.service.AccountDomainServiceTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class CreateAccountApplicationServiceTest {
 
-
     @Test
     void testCreateEligibleAccount()  {
         CreateAccountApplicationService createAccountApplicationService = new CreateAccountApplicationService();
-        AccountDomainService.getInstance().accountEligibilityPolicy(new MajorAccountEligibilibittyPolicy());
+
+        AccountDomainService accountDomainService = new AccountDomainService();
+        accountDomainService.accountEligibilityPolicy(new MajorAccountEligibilibittyPolicy());
+
+        createAccountApplicationService.accountDomainService(accountDomainService);
+
+        AccountEventPublisher accountEventPublisher = new AccountEventPublisher();
+        accountEventPublisher.addAccountCreatedHandler(new AccountQueueEventAdapter());
+
+        createAccountApplicationService.accountEventPublisher(accountEventPublisher);
+
         final Account[] savedAccount = new Account[1];
         createAccountApplicationService.saveAccountPort(new SaveAccountPort() {
             @Override
@@ -42,7 +49,9 @@ public class CreateAccountApplicationServiceTest {
     @Test
     void testCreateNonEligibleAccount()  {
         CreateAccountApplicationService createAccountApplicationService = new CreateAccountApplicationService();
-        AccountDomainService.getInstance().accountEligibilityPolicy(new MajorAccountEligibilibittyPolicy());
+        AccountDomainService accountDomainService = new AccountDomainService();
+        accountDomainService.accountEligibilityPolicy(new MajorAccountEligibilibittyPolicy());
+        createAccountApplicationService.accountDomainService(accountDomainService);
         final Account[] savedAccount = new Account[1];
         createAccountApplicationService.saveAccountPort(new SaveAccountPort() {
             @Override
@@ -56,8 +65,8 @@ public class CreateAccountApplicationServiceTest {
         ;
 
         Assertions.assertThrows(AccountNonEligibleException.class,() -> {
-            createAccountApplicationService.createAccount(command);
-            }
+                    createAccountApplicationService.createAccount(command);
+                }
         );
 
     }

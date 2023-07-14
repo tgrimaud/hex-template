@@ -6,10 +6,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class AccountDomainServiceTest {
-
+    
     @Test
     void nonEligibleAccountTest() {
-        AccountDomainService.getInstance().accountEligibilityPolicy(new AccountEligibilityPolicy() {
+        AccountDomainService accountDomainService = new AccountDomainService();
+        accountDomainService.accountEligibilityPolicy(new AccountEligibilityPolicy() {
             @Override
             public boolean isAccountEligible(Account account) {
                 return false;
@@ -18,12 +19,13 @@ public class AccountDomainServiceTest {
 
         Account nonEligibleAccount = new AccountMother().randomAccount()
                 .build();
-        Assertions.assertFalse(AccountDomainService.getInstance().isAccountEligibleForCreation(nonEligibleAccount));
+        Assertions.assertFalse(accountDomainService.isAccountEligibleForCreation(nonEligibleAccount));
     }
 
     @Test
     void eligibleAccountTest() {
-        AccountDomainService.getInstance().accountEligibilityPolicy(new AccountEligibilityPolicy() {
+        AccountDomainService accountDomainService = new AccountDomainService();
+        accountDomainService.accountEligibilityPolicy(new AccountEligibilityPolicy() {
             @Override
             public boolean isAccountEligible(Account account) {
                 return true;
@@ -32,6 +34,6 @@ public class AccountDomainServiceTest {
 
         Account nonEligibleAccount = new AccountMother().randomAccount()
                 .build();
-        Assertions.assertTrue(AccountDomainService.getInstance().isAccountEligibleForCreation(nonEligibleAccount));
+        Assertions.assertTrue(accountDomainService.isAccountEligibleForCreation(nonEligibleAccount));
     }
 }
