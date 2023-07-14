@@ -13,26 +13,27 @@ public class AccountEventPublisherTest {
                 .randomAccount()
                 .build();
         AccountCreated accountCreated = AccountEventFactory.createAccountCreatedEventV1(account);
-
-        AccountEventPublisher.getInstance().addAccountCreatedHandler(new AccountCreatedHandler() {
+        AccountEventPublisher accountEventPublisher = new AccountEventPublisher();
+        accountEventPublisher.addAccountCreatedHandler(new AccountCreatedHandler() {
             @Override
             public void handleAccountCreated(AccountCreated event) {
                 receivedAccountCreated[0] = event;
             }
         });
-        AccountEventPublisher.getInstance().publishAccountCreatedEvent(accountCreated);
+        accountEventPublisher.publishAccountCreatedEvent(accountCreated);
         Assertions.assertEquals(receivedAccountCreated[0], accountCreated);
     }
 
     @Test
     void testAccountPublisherWithoutHandler() {
         final AccountCreated[] receivedAccountCreated = new AccountCreated[1];
-
+        AccountEventPublisher accountEventPublisher = new AccountEventPublisher();
+        
         Account account = new AccountMother()
                 .randomAccount()
                 .build();
         AccountCreated accountCreated = AccountEventFactory.createAccountCreatedEventV1(account);
 
-        AccountEventPublisher.getInstance().publishAccountCreatedEvent(accountCreated);
+        accountEventPublisher.publishAccountCreatedEvent(accountCreated);
     }
 }
