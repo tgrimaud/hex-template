@@ -26,12 +26,12 @@ public class CreateAccountApplicationService implements CreateAccountUseCase {
         this.saveAccountPort = saveAccountPort;
     }
 
-    @Autowired
+    @Autowired(required = false)
     public void accountEventPublisher(AccountEventPublisher accountEventPublisher){
         this.accountEventPublisher = accountEventPublisher;
     }
 
-    @Autowired
+    @Autowired(required = false)
     public void accountDomainService(AccountDomainService accountDomainService){
         this.accountDomainService = accountDomainService;
     }

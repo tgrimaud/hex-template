@@ -10,22 +10,11 @@ import java.util.List;
 
 @Component
 public class AccountEventPublisher {
-    //In case we want to use the ApplicationEventPublisher of SpringBoot
-    // private ApplicationEventPublisher publisher;
-
-    private static AccountEventPublisher instance;
 
     @Autowired
     private List<AccountCreatedHandler> accountCreatedHandlers = new ArrayList<>();
 
     public AccountEventPublisher(){}
-
-    public static AccountEventPublisher getInstance(){
-        if (instance == null){
-            instance = new AccountEventPublisher();
-        }
-        return instance;
-    }
 
     public void publishAccountCreatedEvent(AccountCreated event) {
         for (AccountCreatedHandler accountCreatedHandler: accountCreatedHandlers) {
