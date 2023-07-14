@@ -6,6 +6,9 @@ import io.risf.galaxion.exemple.accountmanagement.application.port.out.SaveAccou
 import io.risf.galaxion.exemple.accountmanagement.application.service.CreateAccountApplicationService;
 import io.risf.galaxion.exemple.accountmanagement.domain.model.AccountNonEligibleException;
 import io.risf.galaxion.exemple.accountmanagement.domain.model.Account;
+import io.risf.galaxion.exemple.accountmanagement.domain.model.MajorAccountEligibilibittyPolicy;
+import io.risf.galaxion.exemple.accountmanagement.domain.service.AccountDomainService;
+import io.risf.galaxion.exemple.accountmanagement.domain.service.AccountDomainServiceTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -15,6 +18,7 @@ public class CreateAccountApplicationServiceTest {
     @Test
     void testCreateEligibleAccount()  {
         CreateAccountApplicationService createAccountApplicationService = new CreateAccountApplicationService();
+        AccountDomainService.getInstance().accountEligibilityPolicy(new MajorAccountEligibilibittyPolicy());
         final Account[] savedAccount = new Account[1];
         createAccountApplicationService.saveAccountPort(new SaveAccountPort() {
             @Override
@@ -38,6 +42,7 @@ public class CreateAccountApplicationServiceTest {
     @Test
     void testCreateNonEligibleAccount()  {
         CreateAccountApplicationService createAccountApplicationService = new CreateAccountApplicationService();
+        AccountDomainService.getInstance().accountEligibilityPolicy(new MajorAccountEligibilibittyPolicy());
         final Account[] savedAccount = new Account[1];
         createAccountApplicationService.saveAccountPort(new SaveAccountPort() {
             @Override

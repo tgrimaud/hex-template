@@ -30,6 +30,7 @@ public class TemplateApplication {
         //Manual Injection
         DomainRegistry.accountEventPublisher().addAccountCreatedHandler(new AccountQueueEventAdapter());
         DomainRegistry.accountEventPublisher().addAccountCreatedHandler(context.getBean(SubscriptionAccountEventAdapter.class));
+        DomainRegistry.accountDomainService().accountEligibilityPolicy(new MajorAccountEligibilibittyPolicy());
         //Using a mix of SpringBoot injection and Manual
         context.getBean(AccountPersistenceAdapter.class).accountRepository(InMemoryAccountRepository.getInstance());
 
