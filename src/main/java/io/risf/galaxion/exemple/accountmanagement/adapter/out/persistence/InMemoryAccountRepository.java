@@ -1,4 +1,4 @@
-package io.risf.galaxion.exemple.accountmanagement.application.port.out.out.persistence;
+package io.risf.galaxion.exemple.accountmanagement.adapter.out.persistence;
 
 import org.springframework.stereotype.Component;
 

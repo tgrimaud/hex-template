@@ -7,7 +7,6 @@ public class AccountNonEligibleException extends DomainException {
         super(message);
     }
 
-
     public AccountNonEligibleException(String message, Throwable cause) {
         super(message, cause);
     }

@@ -1,6 +1,6 @@
 package io.risf.galaxion.exemple.accountmanagement.application;
 
-import io.risf.galaxion.exemple.accountmanagement.application.port.out.out.queue.AccountQueueEventAdapter;
+import io.risf.galaxion.exemple.accountmanagement.adapter.out.queue.AccountQueueEventAdapter;
 import io.risf.galaxion.exemple.accountmanagement.application.port.in.CreateAccountCommand;
 import io.risf.galaxion.exemple.accountmanagement.application.port.in.CreateAccountCommandMother;
 import io.risf.galaxion.exemple.accountmanagement.application.port.out.SaveAccountPort;
