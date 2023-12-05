@@ -1,6 +1,7 @@
-package io.risf.galaxion.exemple.accountmanagement.domain.model;
+package io.risf.galaxion.exemple.accountmanagement.application.port.event;
 
 import io.risf.galaxion.exemple.accountmanagement.application.port.event.AccountCreatedHandler;
+import io.risf.galaxion.exemple.accountmanagement.domain.model.AccountCreated;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

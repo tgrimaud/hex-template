@@ -8,8 +8,8 @@ public class AccountEventFactory {
     public static AccountCreated createAccountCreatedEventV1(Account account) {
         return AccountCreated.builder()
                 .accountId(account.getId())
+                .accountFirstName(account.getFirstName())
                 .accountLastName(account.getLastName())
-                .accountFirstName(account.getLastName())
                 .accountEmail(account.getEmail())
                 .accountAge(account.getAge())
                 .occurredAt(new Date())

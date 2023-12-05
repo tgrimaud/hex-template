@@ -1,6 +1,7 @@
 package io.risf.galaxion.exemple.accountmanagement.domain.model;
 
 import io.risf.galaxion.exemple.accountmanagement.application.port.event.AccountCreatedHandler;
+import io.risf.galaxion.exemple.accountmanagement.application.port.event.AccountEventPublisher;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
