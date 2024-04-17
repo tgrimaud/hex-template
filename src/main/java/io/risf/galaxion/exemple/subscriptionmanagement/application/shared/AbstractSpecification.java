@@ -1,4 +1,4 @@
-package io.risf.galaxion.exemple.shared;
+package io.risf.galaxion.exemple.subscriptionmanagement.application.shared;
 
 public abstract class AbstractSpecification implements Specification {
 

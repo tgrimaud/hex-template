@@ -1,6 +1,6 @@
 package io.risf.galaxion.exemple.accountmanagement.domain.model;
 
-import io.risf.galaxion.exemple.shared.AbstractSpecification;
+import io.risf.galaxion.exemple.subscriptionmanagement.application.shared.AbstractSpecification;
 
 public class NameAccountSpecification extends AbstractSpecification {
     private String name = "";
